@@ -1,0 +1,26 @@
+clc
+clear 
+
+Kv = 1000; %Rotations Per Minute Per Voltage
+V = 11.1; %(Volts)
+I = 3; %(Amps)
+rho = 1.204;% %air density
+R = 100/1000; %Fan Radius
+A = pi*R^2; %Area
+v = (V*I/(rho*A))^(1/3); %Free Stream Velocity?
+F = rho*A*v^2; %Thrust
+g = 9.81; %Gravity
+Grams = 1000*F/g; %Theoretical Grams
+
+RPM = Kv*V; %Rotations per minute
+RPS = RPM/60; %Rotations per second 
+T = 1/RPS; %Period
+Ptch = v*T; %Pitch
+TipAngle = atand(Ptch/(2*pi*R));
+disp(TipAngle)
+Dist = 25/1000;%m
+AngleAtDist = atand(Ptch/(2*pi*Dist));
+disp(AngleAtDist)
+Dist = 2.5/1000;%m
+AngleAtDist = atand(Ptch/(2*pi*Dist));
+disp(AngleAtDist)
